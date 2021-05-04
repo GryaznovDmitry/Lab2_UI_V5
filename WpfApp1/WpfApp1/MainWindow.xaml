@@ -50,15 +50,15 @@
     <Grid>
         <Menu Name="File" Margin="10,10,0,0" FontSize="16" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="240">
             <MenuItem x:Name="New_btn"  Header="New" Click="New_Click"/>
-            <MenuItem x:Name="Open_btn" Header="Open" Click="Open_Click"/>
-            <MenuItem x:Name="Save_btn" Header="Save" Click="Save_Click"/>
+            <MenuItem x:Name="Open_btn" Header="Open" Command="ApplicationCommands.Open" CommandParameter="From MenuItem"/>
+            <MenuItem x:Name="Save_btn" Header="Save" Command="ApplicationCommands.Save" CommandParameter="From MenuItem"/>
         </Menu>
         <Menu Name="Edit" Margin="10,80,0,0" FontSize="16" HorizontalAlignment="Left" Width="240" Height="160" VerticalAlignment="Top">
             <MenuItem x:Name="AddDefaults_btn" Header="Add Defaults" Click="AddDefaults_Click"/>
             <MenuItem x:Name="AddDefaultDataCollection_btn" Header="Add Default DataCollection" Click="AddDefault_V5DataCollection_Click"/>
             <MenuItem x:Name="AddDefaultDataOnGrid_btn" Header="Add Default DataOnGrid" Click="AddDefault_V5DataOnGrid_Click"/>
             <MenuItem x:Name="Add_FromFile_btn" Header="Add Element from File" Click="Add_FromFile_Click"/>
-            <MenuItem x:Name="Remove_btn" Header="Remove" Click="Remove_Click"/>
+            <MenuItem x:Name="Remove_btn" Header="Remove" Command="ApplicationCommands.Delete" CommandParameter="From MenuItem"/>
             <MenuItem x:Name="AddCustomDataOnGrid_btn" Header="Add Custom V5DataOnGrid" 
                       Command="{x:Static local:MainWindow.AddCustomDoG}" CommandParameter="From MenuItem"/>
         </Menu>

@@ -65,9 +65,11 @@ namespace WpfApp1
             if (MC.IsChanged)
             {
                 UnsavedChanges();
-            } 
+            }
             MC = new V5MainCollection();
             DataContext = MC;
+            bind = new BindDataOnGrid(ref MC);
+            AddCustomGrid.DataContext = bind;
             ErrorMsg();
         }
 
@@ -203,13 +205,11 @@ namespace WpfApp1
             if ((bool)dialog.ShowDialog())
                 MC.Save(dialog.FileName);
             ErrorMsg();
-
         }
 
         private void CanSaveHandler(object sender, CanExecuteRoutedEventArgs e)
         {
-            if(Toolbar!= null)
-                e.CanExecute = MC.IsChanged;
+            e.CanExecute = MC.IsChanged;
         }
 
         private void DeleteHandler(object sender, ExecutedRoutedEventArgs e)
@@ -251,11 +251,6 @@ namespace WpfApp1
 
         private void CanAddDataOnGridHandler(object sender, CanExecuteRoutedEventArgs e)
         {
-            /*if (LB_DoG.SelectedItem as V5DataOnGrid == null)
-            {
-                e.CanExecute = false;
-                return;
-            }*/
             if (TextBox_Size == null || TextBox_Xnum == null ||
                 TextBox_Ynum == null || TextBox_DGstr == null)
             {

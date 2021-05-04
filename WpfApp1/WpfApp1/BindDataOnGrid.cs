@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using ClassLibrary1;
 
 namespace WpfApp1
@@ -44,6 +45,7 @@ namespace WpfApp1
             {
                 xNum = value;
                 OnPropertyChanged("Xnum");
+                OnPropertyChanged("Ynum");
             }
         }
 
@@ -57,6 +59,7 @@ namespace WpfApp1
             {
                 yNum = value;
                 OnPropertyChanged("Ynum");
+                OnPropertyChanged("Xnum");
             }
         }
 
@@ -121,6 +124,7 @@ namespace WpfApp1
             Grid2D grid = new Grid2D(Size, Size, Xnum, Ynum);
             V5DataOnGrid DoG = new V5DataOnGrid(DGstr, DateTime.Now , grid);
             DoG.InitRandom();
+            //MessageBox.Show(DoG.ToLongString("g3"));
             MainCol.Add(DoG);
             OnPropertyChanged("Size");
             OnPropertyChanged("Xnum");
