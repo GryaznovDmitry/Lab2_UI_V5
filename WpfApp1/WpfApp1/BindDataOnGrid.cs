@@ -81,8 +81,8 @@ namespace WpfApp1
                 switch (columnName)
                 {
                     case "DGstr":
-                        foreach (V5DataOnGrid item in MainCol)
-                            if (DGstr == item.InfoData)
+                        foreach ( V5Data item in MainCol )
+                            if (DGstr.Equals(item.InfoData))
                                 msg = "Same string value";
                         break;
                     case "Ynum":
@@ -116,16 +116,16 @@ namespace WpfApp1
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
-        public void Add(float s, int xnum, int ynum, string st)
+        public void Add()
         {
-            Size = s;
-            Xnum = xnum;
-            Ynum = ynum;
-            DGstr = st;
             Grid2D grid = new Grid2D(Size, Size, Xnum, Ynum);
             V5DataOnGrid DoG = new V5DataOnGrid(DGstr, DateTime.Now , grid);
             DoG.InitRandom();
             MainCol.Add(DoG);
+            OnPropertyChanged("Size");
+            OnPropertyChanged("Xnum");
+            OnPropertyChanged("Ynum");
+            OnPropertyChanged("DGstr");
         }
     }
 }

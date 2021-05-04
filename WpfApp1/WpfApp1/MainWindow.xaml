@@ -63,7 +63,7 @@
                       Command="{x:Static local:MainWindow.AddCustomDoG}" CommandParameter="From MenuItem"/>
         </Menu>
 
-        <ToolBar HorizontalAlignment="Left" Height="40" Margin="10,440,0,0" VerticalAlignment="Top" Width="230">
+        <ToolBar Name="Toolbar" HorizontalAlignment="Left" Height="40" Margin="10,440,0,0" VerticalAlignment="Top" Width="230">
             <Button Content="Open" Command="ApplicationCommands.Open" CommandParameter="From Button" />
             <Button Content="Save" Command="ApplicationCommands.Save" CommandParameter="From Button" />
             <Button Content="Add Custom" Command="{x:Static local:MainWindow.AddCustomDoG}" CommandParameter="From Button" />
@@ -132,29 +132,31 @@
                  VerticalAlignment="Top"
                  Width="80"/>
 
-        <TextBox x:Name="TextBox_Size"
-                 Text="{Binding Path=BindDataOnGrid.Size, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" Margin="10,279,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="21"/>
+        <Grid Name="AddCustomGrid" HorizontalAlignment="Left" Height="157" Margin="0,263,0,0" VerticalAlignment="Top" Width="240">
+            <TextBox x:Name="TextBox_Size"
+                     Text="{Binding Path=Size, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Left" Margin="50,10,0,0" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
 
-        <TextBox x:Name="TextBox_Xnum"
-                 Text="{Binding Path=BindDataOnGrid.Xnum, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" Margin="10,320,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
+            <TextBox x:Name="TextBox_Xnum"
+                     Text="{Binding Path=Xnum, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Left" Margin="50,50,0,0" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
 
-        <TextBox x:Name="TextBox_Ynum"
-                 Text="{Binding Path=BindDataOnGrid.Ynum, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" Margin="10,360,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
+            <TextBox x:Name="TextBox_Ynum"
+                     Text="{Binding Path=Ynum, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Left" Margin="50,90,0,0" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="20"/>
 
-        <TextBox x:Name="TextBox_DGstr"
-                 Text="{Binding Path=BindDataOnGrid.DGstr, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
-                 HorizontalAlignment="Left" Margin="10,399,0,0" 
-                 TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="21"/>
-
-        <TextBlock HorizontalAlignment="Left" Margin="10,263,0,0" Text="X" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,305,0,0" Text="Xnum" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,344,0,0" Text="Ynum" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,383,0,0" Text="String" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBox x:Name="TextBox_DGstr"
+                     Text="{Binding Path=DGstr, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Left" Margin="50,130,0,0" 
+                     TextWrapping="Wrap" VerticalAlignment="Top" Width="130" Height="21"/>
+        
+            <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" Text="X" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,50,0,0" Text="Xnum" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,90,0,0" Text="Ynum" TextWrapping="Wrap" VerticalAlignment="Top"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,130,0,0" Text="String" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        </Grid>
     </Grid>
 </Window>

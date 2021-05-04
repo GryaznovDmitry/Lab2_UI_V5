@@ -12,15 +12,16 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private V5MainCollection MC = new V5MainCollection();
+        BindDataOnGrid bind;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = MC;
+            bind = new BindDataOnGrid(ref MC);
+            AddCustomGrid.DataContext = bind;
         }
 
         public static RoutedCommand AddCustomDoG = new RoutedCommand("Add", typeof(WpfApp1.MainWindow));
-
-        BindDataOnGrid bind;
 
         private void Add_FromFile_Click(object sender, RoutedEventArgs e)
         {
@@ -207,7 +208,8 @@ namespace WpfApp1
 
         private void CanSaveHandler(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = MC.IsChanged;
+            if(Toolbar!= null)
+                e.CanExecute = MC.IsChanged;
         }
 
         private void DeleteHandler(object sender, ExecutedRoutedEventArgs e)
@@ -223,23 +225,23 @@ namespace WpfApp1
 
         private void CanDeleteHandler(object sender, CanExecuteRoutedEventArgs e)
         {
-            var Selection = LB_Main.SelectedItems;
-            List<V5Data> selectedItems = new List<V5Data>();
-            selectedItems.AddRange(Selection.Cast<V5Data>());
-            if (selectedItems.Count != 0)
-                e.CanExecute = true;
-            else 
-                e.CanExecute = false;
+            if (LB_Main != null)
+            {
+                var Selection = LB_Main.SelectedItems;
+                List<V5Data> selectedItems = new List<V5Data>();
+                selectedItems.AddRange(Selection.Cast<V5Data>());
+                if (selectedItems.Count != 0)
+                    e.CanExecute = true;
+                else
+                    e.CanExecute = false;
+            }
         }
 
         private void AddDataOnGridHandler(object sender, ExecutedRoutedEventArgs e)
         {
             try
             {
-                bind.Add((float)Convert.ToDouble(TextBox_Size.Text),
-                                Convert.ToInt32( TextBox_Xnum.Text),
-                                Convert.ToInt32( TextBox_Ynum.Text), 
-                                                 TextBox_DGstr.Text);
+                bind.Add();
             }
             catch (Exception ex)
             {
@@ -249,11 +251,11 @@ namespace WpfApp1
 
         private void CanAddDataOnGridHandler(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (LB_DoG.SelectedItem as V5DataOnGrid == null)
+            /*if (LB_DoG.SelectedItem as V5DataOnGrid == null)
             {
                 e.CanExecute = false;
                 return;
-            }
+            }*/
             if (TextBox_Size == null || TextBox_Xnum == null ||
                 TextBox_Ynum == null || TextBox_DGstr == null)
             {
@@ -266,19 +268,6 @@ namespace WpfApp1
             }
             else
                 e.CanExecute = true;
-        }
-
-        private void LB_DataOnGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (LB_DoG.SelectedItem as V5DataOnGrid != null)
-            {
-                V5MainCollection Selection = (V5MainCollection)LB_Main.SelectedItems;
-                bind = new BindDataOnGrid(ref Selection);
-                TextBox_Size.DataContext = bind;
-                TextBox_Xnum.DataContext = bind;
-                TextBox_Ynum.DataContext = bind;
-                TextBox_DGstr.DataContext = bind;
-            }
-        }
+        }     
     }
 }
